@@ -1,6 +1,6 @@
 # Recommended Video Formats
 
-Our goal is for you to have the highest quality version of your video library to work with in Wurl.
+Our goal is for you to have the highest quality version of your video library to work with.
 
 "Preferred" indicates our **recommended** formats, it’s best if you meet or exceed these levels.
 "Supported" indicates the **minimum** supported formats.  Video files that do not meet these levels may have noticeable quality issues when your programming airs.

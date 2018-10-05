@@ -1,8 +1,8 @@
-# Wurl JSON Feed
+# Sinclair External VOD Feed
 
 ### Overview
 
-This guide includes detailed information on the Wurl JSON Feed Specification, which can be used to build a content feed that includes movies, series, TV Specials, and/or short-form videos.
+This guide includes detailed information on the Sinclair External VOD Feed Specification, which can be used to build a content feed that includes movies, series, TV Specials, and/or short-form videos.
 
 Initially, a JSON format will be supported that follows the JSON-Schema Draft 4. All the properties in the schema are **case sensitive**.
 
