@@ -1,37 +1,20 @@
-# Wurl Feed Specifications
+# Sinclair External Ingest Specification
+This is the documentation for providing linear feeds and VOD to the Sinclair Broadcast Group Digital Platform.
 
-This is the Wurl feed specification covering the formats we prefer to use for inbound feeds to the Wurl Platform as well as outbound feeds.
+## Linear Feeds
+Linear feeds are specified by two files which must be available from a public URL:
 
+### Linear HLS Manifest
+Linear feeds require an HLS Stream with SCTE-35 Ad markers and embedded 608 Closed Captions. Addition technical requirements may be found in out [HLS Technical Spec](sinclair-hls-technical-spec.md)
 
-## Content Types
-A feed may contain one or more of the following types of content:
+### Program Schedule 
+Program schedules must be specified according to our [External Linear Feed Spec](sinclair-linear-feed-spec.md)
 
-* Movies
-* Series
-* TV Specials
-* Short-form videos i.e. the content is not TV Shows or Movies
+## VOD Feeds
+VOD feeds are specified by one main structural file and a series of streams for content.
 
+### VOD Structure Feed
+VOD feeds are embodied by a publically-available JSON file which must adhere to our [External VOD Feed Spec](sinclair-vod-feed-spec.md). This feed must include links to HLS manifest files for each video item.
 
-## Feed Formats
-
-### JSON Feed Format
-
-This is a JSON format that is supported for all types of content, including Movies, Series and TV Specials that require detailed metadata. See [JSON Feed Specification](https://github.com/wurlinc/wurl-feed-specifications/blob/master/wurl-json-feed-specification.md) for details.
-
-### MRSS Feed Format
-
-When using MRSS, please provide Wurl with a syndication feed in standard RSS 2.0/MRSS format. Wurl requires some additional tags depending on what type of content provider you are. If you are an online video producer you should use the [Format for online Video Producers](https://github.com/wurlinc/wurl-feed-specifications/blob/master/mrss-format-online-producers.md) and if you are a Movie or TV series provider you should use the [Format for Movie or TV series providers](https://github.com/wurlinc/wurl-feed-specifications/blob/master/mrss-format-tv-providers.md)
-
-#### Resources
-
-| Reference                                      | URL
-|-------------------------------------------     | ----------
-| XML 1.0 Specification                          | <http://www.w3.org/TR/REC-xml/>
-| RSS 2.0 Specification                          | <http://www.rssboard.org/rss-specification>
-| Media RSS Specification                        | <http://www.rssboard.org/media-rss>
-| Dublin Core Specification                      | <http://dublincore.org/documents/dc-xml-guidelines/>
-| W3C Feed Validation Service                    | <https://validator.w3.org/feed/>
-| Wurl MRSS Tags                                 | [Wurl MRSS Tags](https://github.com/wurlinc/wurl-feed-specifications/blob/master/wurl-mrss-namespace.md)
-
-
-
+### VOD HLS Manifest
+VOD items (movies, episodes, etc...) require an HLS Stream with embedded 608 Closed Captions. Ads may be specified as SCTE-35 Ad markers or included in the VOD Structure Feed as described by the spec. Addition technical requirements may be found in out [HLS Technical Spec](sinclair-hls-technical-spec.md)
