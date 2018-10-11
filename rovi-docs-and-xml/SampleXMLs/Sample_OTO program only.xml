@@ -1,0 +1,72 @@
+<ns0:Rovi_Listings SourceRegion="North America" Station="Station_Name"  xmlns:ns0="http://Rovi.Ingest.Listings.External">
+	<Programs>
+		<Program StationProgramID="Program_ID_1" ProgramType="OTO" Category="Other" ProgramTitle="ProgramTitle"
+             OriginalTitle="OriginalTitle" OriginalAirDate="2011-02-15T13:20:00.000" OriginalContent="OriginalContent"
+             SeriesEpisodeTitle="" OriginalEpisodeTitle="" SeriesEpisodeNumber=""
+             SeriesId="" SeriesSeasonNumber="" YearOfRelease="2011" Runtime="120" PrimaryLanguage="English"
+             OriginalTitleLanguage="English" CountryOfOrigin="United States" ProdCompany="ProductionCompany" DistName="DistName"
+             NOLAcode="NOLAco" SportsLeague="" SportsTeam1="" SportsTeam2="" PartNumber="8" PartTotal="10"
+             PgmColorType="Color" Caption="CC" AiringType="New" AudioLevel="DSS (Surround Sound)" HDTVLevel="1080i" DVI="true" ThreeDFormat="3D Level Unknown">
+			<Genres>
+				<Genre value="action/adventure" />
+				<Genre value="animated" />
+			</Genres>
+			<Ratings>
+				<PgmRating Type="US TV" Rating="TV-PG">
+					<RatingReasons>
+						<RatingReason value="D" /> 
+						<RatingReason value="L" /> 
+						<RatingReason value="S" /> 
+						<RatingReason value="V" /> 
+					</RatingReasons>
+				</PgmRating>
+			</Ratings>
+			<Credits>
+				<Credit Type="Actor" Name="Name of Actor 1" Role="Role played by Actor 1" Sequence="0" />
+				<Credit Type="Actor" Name="Name of Actor 2" Role="Role played by Actor 2" Sequence="1" Language="English"/>
+				<Credit Type="Director" Name="Name of Director" Role="" Sequence="3" />
+			</Credits>
+			<UGCS>
+				<Category>Category_0</Category>
+				<Type>Type_0</Type>
+				<Content>Content_0</Content>
+			</UGCS>
+			<PgmDescriptions>
+				<PgmDescription>
+					<AffiliateStation/>
+					<Type>ShortDescription</Type>
+					<Description>Description_0</Description>
+					<Culture>English - NA</Culture>
+				</PgmDescription>
+				<PgmDescription>
+					<Type>Long Description</Type>
+					<Description>LongDescription_0</Description>
+				</PgmDescription>
+			</PgmDescriptions>
+			<AlternateTitles>
+				<Title>
+					<AltTitleType>Alias</AltTitleType>
+					<AltTitleText>Alias1 AltTitleText</AltTitleText>
+					<AltTitleLanguage>English</AltTitleLanguage>
+				</Title>
+				<Title>
+					<AltTitleType>Alias2</AltTitleType>
+					<AltTitleText>Alias2 AltTitleText</AltTitleText>
+					<AltTitleLanguage>English</AltTitleLanguage>
+				</Title>
+			</AlternateTitles>
+			<RichMedia>
+				<Images>
+					<Image AssetID="Unique AssetID-1" Title="Title of the image if different from program title" Type="Program: Key" Language="" Caption="Caption 1" MediaCredit="MediaCredit name(s)" 
+		  ZoomLevel="2" NumberOfPeople="5" FileLocation="http://wvm.sfanytime.se.edgesuite.net/movieimages/COVER/ec944fd4-b9b8-4665-95f9-a0d700d77aa0_COVER.jpg" FileName="ec944fd4-b9b8-4665-95f9-a0d700d77aa0_COVER.jpg" FileFormat="jpg">
+						<Rights>
+							<Right Title="Getty Images" StartDate="2013-05-31" EndDate="2023-05-31" />
+						</Rights>
+					</Image>
+					<Image Type="Program: Supporting" FileLocation="http://wvm.sfanytime.se.edgesuite.net/movieimages/MINI/38306466-d2b5-4aaf-be68-a0d700d7a3fb_MINI.jpg" >
+					</Image>
+				</Images>
+			</RichMedia>
+		</Program>
+	</Programs>
+</ns0:Rovi_Listings>

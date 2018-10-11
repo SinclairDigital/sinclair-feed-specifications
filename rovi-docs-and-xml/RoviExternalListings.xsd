@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:b="http://schemas.microsoft.com/BizTalk/2003" xmlns="http://Rovi.Ingest.Listings.External" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://Rovi.Ingest.Listings.External" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:include schemaLocation="RoviExternalListingsDataTypes.xsd" />
+  <xs:element name="Rovi_Listings">
+    <xs:annotation>
+      <xs:appinfo>
+        <recordInfo rootTypeName="Rovi_Listings" xmlns="http://schemas.microsoft.com/BizTalk/2003" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Programs">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="Program" type="ProgramTypeDef">
+                <xs:annotation>
+                  <xs:documentation>Program metadata for this event.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute default="North America" name="SourceRegion">
+        <xs:annotation>
+          <xs:appinfo>
+            <fieldInfo notes="Indentifies the region of Station. Currently Ingest primarily recognizes region as either 'North America' or 'Europe'" xmlns="http://schemas.microsoft.com/BizTalk/2003" />
+          </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="SourceRegionDataType" />
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attribute name="Station">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:maxLength value="128" />
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="EventRatingTypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="2" name="EventRating">
+        <xs:annotation>
+          <xs:documentation>All ratings for the individual program.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RatingReasons">
+              <xs:annotation>
+                <xs:documentation>Reasons for the rating applied to the program.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" maxOccurs="unbounded" name="RatingReason">
+                    <xs:complexType>
+                      <xs:attribute name="value">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="30" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="Type">
+            <xs:annotation>
+              <xs:documentation>The name or acronym of the agency that has rated this program.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="EventRatingTypeDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="TVRating">
+            <xs:annotation>
+              <xs:documentation>This field is used to specify the Rating of the program.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="EventRatingDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PgmRatingTypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="3" name="PgmRating">
+        <xs:annotation>
+          <xs:documentation>All ratings for the individual program.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="RatingReasons">
+              <xs:annotation>
+                <xs:documentation>Reasons for the rating applied to the program.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" maxOccurs="unbounded" name="RatingReason">
+                    <xs:complexType>
+                      <xs:attribute name="value" type="xs:string" />
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="Type">
+            <xs:annotation>
+              <xs:documentation>The name or acronym of the agency that has rated this program.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="PgmRatingTypeDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Rating">
+            <xs:annotation>
+              <xs:documentation>This field is used to specify the Rating of the program.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="PgmRatingDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GenreTypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Genre">
+        <xs:annotation>
+          <xs:documentation>A single genre entry.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="value">
+            <xs:simpleType>
+              <xs:restriction base="GenreDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CreditsTypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Credit">
+        <xs:annotation>
+          <xs:documentation>At least one Credit Type of ‘Actor’ must be provided when the program type has been designated as ‘Movie’.  The credit sequence attribute is MANDATORY only when credit information is provided for the program.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:attribute name="Type">
+            <xs:annotation>
+              <xs:documentation>Used to designate actors and other persons affiliated with a program.  (e.g., actor, director, narrator, host, etc.) Each Credit Type entry must have an associated Credit Name.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="CreditDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Name">
+            <xs:annotation>
+              <xs:documentation>The actual name of the actor or other persons affiliated with a program. (e.g., Tom Hanks, Robert Redford)  Each Credit Name entry must have an associated Credit Type. </xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Role">
+            <xs:annotation>
+              <xs:documentation>The role played by an actor.  (e.g., Rhett Butler)  Each Role entry must have an associated Credit Name and Credit Type.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Language" type="xs:string">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="Used to describe Language the credit text is in." xmlns:b="http://schemas.microsoft.com/BizTalk/2003" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="Sequence">
+            <xs:annotation>
+              <xs:documentation>When more than one credit is provided for a program, this attribute will prioritize the display sequence of the credits to the end-user.  When provided, the credit sequence of a program should be a non-negative integer value.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:nonNegativeInteger" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="RoviCreditID" type="xs:nonNegativeInteger">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="A credit ID corresponds to ROVI Credit IDs, used when partner can send pre-matched Credits to ROVI as determined by ROVI." />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UGCSTypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Category" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" name="Content" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProgramCopyTypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PgmDescription">
+        <xs:annotation>
+          <xs:documentation>Valid program descriptions.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="AffiliateStation" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <b:fieldInfo notes="Not used at this time. Consult with Rovi representative before using it in Program Description." />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <b:fieldInfo notes="Description of the program. Length limits as per determined by Description type (refer Guide book)" />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="Culture" type="xs:string">
+              <xs:annotation>
+                <xs:appinfo>
+                  <b:fieldInfo notes="Determines the culture of program description text." />
+                </xs:appinfo>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ScheduleTypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Schedule">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Ratings" type="EventRatingTypeDef">
+              <xs:annotation>
+                <xs:documentation>All ratings for the individual airing.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="MiscAttributes">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" maxOccurs="unbounded" name="Attribute">
+                    <xs:complexType>
+                      <xs:attribute name="Key">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="128" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="Value" type="xs:string" />
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+          <xs:attribute name="AffiliateStation">
+            <xs:annotation>
+              <xs:documentation>The Source ID is the unique ID that represents the source (station).</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="255" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="TimeZone" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>This is the time zone in which the calendar date and broadcast time of a program is being provided.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="CalendarDT" type="xs:dateTime">
+            <xs:annotation>
+              <xs:documentation>This is the calendar date and time of the program.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="StartTime" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The start time of the program.  If the CalendarDT does not contain the start time this attribute must be populated.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="EndTime" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The end time of the program.  This attribute is optional if the duration is provided.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="Duration" type="xs:nonNegativeInteger">
+            <xs:annotation>
+              <xs:documentation>This is the duration of the program being aired, in minutes.  This attribute is not required if the end time is provided.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="AssetID">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="A numeric value designated to point to a schedule that is non linear- VOD" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="255" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ShowingType">
+            <xs:annotation>
+              <xs:documentation>Showing type of the program.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="ShowingDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="AspectRatio">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="The Width and Height ratio of the onscreen program being broadcasted" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="AspectRatioDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="SAP" type="xs:boolean">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="Designates programs broadcasted with narrated descriptions for visually impaired" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="Subtitled" type="xs:boolean">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="Designate whether the program has subtitles on screen." />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="SubtitleLanguage">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="Indicates the language in which the program is subtitled, if applicable." />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="UmbrellaTitle">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="The Umbrella Title gives the option to override the program title in the schedule" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="128" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="PartNumber" type="xs:nonNegativeInteger">
+            <xs:annotation>
+              <xs:documentation>Indicates the part number. Used only on long programs such as movies that are airing in multiple parts.  If this field is provided, Part Total must also be provided.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="PartTotal" type="xs:nonNegativeInteger">
+            <xs:annotation>
+              <xs:documentation>Indicates the total number of parts. Used only on long programs such as movies that are airing n multiple parts.  Required if Part Number is provided.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="PgmColorType">
+            <xs:annotation>
+              <xs:documentation>Denotes the color of the program being broadcast.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="PgmColorDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="Caption">
+            <xs:annotation>
+              <xs:documentation>Caption feature of the program.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="CaptionDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="AiringType">
+            <xs:annotation>
+              <xs:documentation>Airing type of the program.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="AiringDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="AudioLevel">
+            <xs:annotation>
+              <xs:documentation>Indicates the Audio level of the program.  Indicate actual level (Dolby Digital, Dolby 5.1, etc.) if known, "Stereo" if the if the exact level is unknown, or "None" if this program is not being aired in Stereo.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="AudioLevelDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="HDTVLevel">
+            <xs:annotation>
+              <xs:documentation>Indicates the level of high definition of the program.  Indicate actual level (720p, 1081I, etc.) if known, "HD" if the if the exact level is unknown, or "None" if this program is not being aired in HD.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="HDTVLevelDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="DVI" type="xs:boolean">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="Designates programs broadcast with narrated descriptions for the visually impaired" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="JoinedInProgress" type="xs:boolean">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="Use if the program start time is delayed" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="SubjectToBlackout" type="xs:boolean">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="If the program is locally subjected to blackout" />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="Dubbed">
+            <xs:annotation>
+              <xs:documentation>Indicates the language in which the program is dubbed.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="IsEncrypted" type="xs:boolean">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="Designate whether the program is encrypted." />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="VPS" type="xs:dateTime">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="International attribute for Video Programming Service VPS and PDC systems are used by many analogue TV stations to ensure that a timer recording catches the whole programme even when the programme is not running to schedule.This means that if you input the announced time and date of the programme that you want to record, and that programme happens to run late, for example, VPS and PDC will automatically correct the timed recording on your recorder. " />
+              </xs:appinfo>
+            </xs:annotation>
+          </xs:attribute>
+          <xs:attribute name="Highlight">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="International field, specific highlights for the broadcast." />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="4000" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="BroadcastLanguage">
+            <xs:annotation>
+              <xs:appinfo>
+                <b:fieldInfo notes="The Language the program is being broadcast in. Only to be used in cases where the original Language is different" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:maxLength value="60" />
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="StarRating">
+            <xs:simpleType>
+              <xs:restriction base="StarRatingDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attribute name="ThreeDFormat">
+            <xs:simpleType>
+              <xs:restriction base="ThreeDFormatDataType" />
+            </xs:simpleType>
+          </xs:attribute>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ProgramTypeDef">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Genres" type="GenreTypeDef">
+        <xs:annotation>
+          <xs:documentation>A list of descriptive words that may be assigned to help identify and categorize the content of the program, helping users get more information about the exact content of the program.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Ratings" type="PgmRatingTypeDef">
+        <xs:annotation>
+          <xs:documentation>All ratings for the program.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Credits" type="CreditsTypeDef">
+        <xs:annotation>
+          <xs:documentation>All credits for the program.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="UGCS" type="UGCSTypeDef">
+        <xs:annotation>
+          <xs:documentation>EU program classification data.</xs:documentation>
+          <xs:appinfo>
+            <b:recordInfo notes="International third party classification, Universal Genre Classification System" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="PgmDescriptions" type="ProgramCopyTypeDef">
+        <xs:annotation>
+          <xs:documentation>All descriptions for the program.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="AlternateTitles">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Title">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" maxOccurs="1" name="AltTitleType">
+                    <xs:simpleType>
+                      <xs:restriction base="AlternateTitleTypeDataType">
+                        <xs:enumeration value="Alias" />
+                        <xs:enumeration value="Alias2" />
+                        <xs:enumeration value="Alias3" />
+                        <xs:enumeration value="Alias4" />
+                        <xs:enumeration value="isis_alias_1" />
+                        <xs:enumeration value="isis_alias_2" />
+                        <xs:enumeration value="isis_alias_3" />
+                        <xs:enumeration value="isis_alias_4" />
+                        <xs:enumeration value="Grid2" />
+                        <xs:enumeration value="Sort" />
+                        <xs:enumeration value="Grid" />
+                        <xs:enumeration value="50 charact. or less" />
+                        <xs:enumeration value="Alt1" />
+                        <xs:enumeration value="Parent" />
+                        <xs:enumeration value="Adult Generic" />
+                        <xs:enumeration value="TVG Title" />
+                        <xs:enumeration value="Umbrella Title" />
+                        <xs:enumeration value="Episode Title" />
+                        <xs:enumeration value="Full Sports Subtitle" />
+                        <xs:enumeration value="AKA Episode Title 1" />
+                        <xs:enumeration value="AKA Episode Title 2" />
+                        <xs:enumeration value="30 charact. or less" />
+                        <xs:enumeration value="On-Screen" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element minOccurs="0" maxOccurs="1" name="AltTitleText">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="128" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element minOccurs="0" maxOccurs="1" name="AltTitleLanguage">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="60" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="RichMedia">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="Images">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element minOccurs="0" maxOccurs="unbounded" name="Image">
+                    <xs:complexType>
+                      <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="1" name="Rights">
+                          <xs:complexType>
+                            <xs:sequence>
+                              <xs:element minOccurs="0" maxOccurs="unbounded" name="Right">
+                                <xs:complexType>
+                                  <xs:attribute name="Title">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <b:fieldInfo notes="Name of the Image Rights. " />
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                    <xs:simpleType>
+                                      <xs:restriction base="xs:string">
+                                        <xs:maxLength value="128" />
+                                      </xs:restriction>
+                                    </xs:simpleType>
+                                  </xs:attribute>
+                                  <xs:attribute name="StartDate" type="xs:date">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <b:fieldInfo notes="Start Date that above mentioned Image Rights on image are owned" />
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:attribute>
+                                  <xs:attribute name="EndDate" type="xs:date">
+                                    <xs:annotation>
+                                      <xs:appinfo>
+                                        <b:fieldInfo notes="Date on which mentioned Image Rights expire" />
+                                      </xs:appinfo>
+                                    </xs:annotation>
+                                  </xs:attribute>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                      <xs:attribute name="AssetID">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="Uniquely identifies a single RichMedia Asset within sender’s database" />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="128" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="Title">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="Image Title to be used in case different from Program Title" />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="128" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="Type">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="The type or category of the image (e.g., Head Shot: Key) that can help classify images when they are created or edited." />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="ImageTypeDataType" />
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="Language">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="If Image has text information then Language of the text." />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="60" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="Caption">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="A brief description of the image." />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="2000" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="MediaCredit">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="The media outlet that should be credited with the image." />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="128" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="ZoomLevel" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="The relative zoom level of the image." />
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="NumberOfPeople" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="This field represents number of people in the image." />
+                          </xs:appinfo>
+                        </xs:annotation>
+                      </xs:attribute>
+                      <xs:attribute name="FileLocation" use="required">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="Refers to the URL if image is available online, or refers to the file path if images are provided in additional compressed file" />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="1024" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="FileName">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="File name (excluding full path) of the image if providing images as compressed zip file." />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:maxLength value="128" />
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="FileFormat">
+                        <xs:annotation>
+                          <xs:appinfo>
+                            <b:fieldInfo notes="Format of the file e.g. jpg, jpeg, PNG etc." />
+                          </xs:appinfo>
+                        </xs:annotation>
+                        <xs:simpleType>
+                          <xs:restriction base="ImageFileFormatDataType" />
+                        </xs:simpleType>
+                      </xs:attribute>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="MiscAttributes">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="Attribute">
+              <xs:complexType>
+                <xs:attribute name="Key">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:maxLength value="128" />
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="Value" type="xs:string" />
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" maxOccurs="1" name="Schedules" type="ScheduleTypeDef">
+        <xs:annotation>
+          <xs:documentation>An individual event in the source's schedule.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="StationProgramID">
+      <xs:annotation>
+        <xs:documentation>Uniquely identifies a single program. This can be either a number or alphanumeric code, must uniquely identify a single program, and be guaranteed not to change or to be re-used.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="128" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="ProgramType">
+      <xs:simpleType>
+        <xs:restriction base="ProgramTypeDataType" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Category">
+      <xs:annotation>
+        <xs:documentation>The single most appropriate categorization for this program outside of ProgramType.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="CategoryDataType" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="ProgramTitle">
+      <xs:annotation>
+        <xs:documentation>Full title by which this program is commonly known.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="128" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="OriginalTitle">
+      <xs:annotation>
+        <xs:documentation>The title under which the program was first released by the production company or the producing TV source. Please fill in these fields whenever you can confirm them.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="128" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="OriginalAirDate" type="xs:dateTime">
+      <xs:annotation>
+        <xs:documentation>Original date that the program aired on this source. MMDDYYYY format.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="OriginalContent">
+      <xs:annotation>
+        <xs:documentation>Is the program original to this network (Y/N).</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SeriesEpisodeTitle">
+      <xs:annotation>
+        <xs:documentation>Episode Title, as supplied by the distributor or syndicator.  Either this field, Episode Number or Part Number must be provided for Series Episodes.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="128" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="OriginalEpisodeTitle">
+      <xs:annotation>
+        <xs:appinfo>
+          <b:fieldInfo notes="The Episode title under which the program was first released by the production company or the producing TV source. Please fill in these fields whenever you can confirm them." />
+        </xs:appinfo>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="128" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SeriesEpisodeNumber">
+      <xs:annotation>
+        <xs:documentation>Episode Number, as supplied by the distributor or syndicator.  Either this field, Episode Title or Part Number must be provided for Series Episodes.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="20" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SeriesId">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="128" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SeriesSeasonNumber">
+      <xs:annotation>
+        <xs:documentation>An integer value that identifies the season that the program was created/aired.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="8" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="YearOfRelease">
+      <xs:annotation>
+        <xs:documentation>The year the program/version was released in YYYY format.  Required for movies, but is optional for other program types.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:int">
+          <xs:minInclusive value="1900" />
+          <xs:maxInclusive value="9999" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Runtime">
+      <xs:annotation>
+        <xs:documentation>The runtime is the length/duration of the program. This value shall be provided in minutes.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:int">
+          <xs:minInclusive value="1" />
+          <xs:maxInclusive value="1440" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="PrimaryLanguage">
+      <xs:annotation>
+        <xs:documentation>Indicates the primary language in which the program was created.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="60" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="OriginalTitleLanguage">
+      <xs:annotation>
+        <xs:appinfo>
+          <b:fieldInfo notes="To be used if the program language and the broadcasting language is different" />
+        </xs:appinfo>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="60" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="CountryOfOrigin">
+      <xs:annotation>
+        <xs:documentation>Identifies the country where the program was originally produced.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="ProdCompany">
+      <xs:annotation>
+        <xs:appinfo>
+          <b:fieldInfo notes="The company that produced the program." />
+        </xs:appinfo>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="60" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="DistName">
+      <xs:annotation>
+        <xs:appinfo>
+          <b:fieldInfo notes="The company that syndicates/distributes the program, if applicable." />
+        </xs:appinfo>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="30" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="NOLAcode">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="6" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SportsLeague">
+      <xs:annotation>
+        <xs:documentation>Official League Name for this event.  E.g., NFL, AFL, MLB, etc.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="128" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SportsTeam1">
+      <xs:annotation>
+        <xs:documentation>Generally indicates the home team, when event is not being aired at a neutral site.  This field may be blank for non-team events.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SportsTeam2">
+      <xs:annotation>
+        <xs:documentation>Generally indicates the away team, when event is not being aired at a neutral site.  This field may be blank for non-team events.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:maxLength value="255" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="SportsEventDate" type="xs:dateTime">
+      <xs:annotation>
+        <xs:documentation>Specifies the actual date on which the sporting event will occur, has occurred.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="PartNumber" type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>Indicates the part number of a multi-part movie, episode or special.  If this field is provided, Part Total must also be provided.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="PartTotal" type="xs:nonNegativeInteger">
+      <xs:annotation>
+        <xs:documentation>Indicates the total number of parts. (e.g., Part 1 of 2) of a multi-part movie, episode or special.  Required if Part Number is provided.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="PgmColorType">
+      <xs:annotation>
+        <xs:documentation>Denotes the color of the program being broadcast.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="PgmColorDataType" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Caption">
+      <xs:annotation>
+        <xs:documentation>Identifies the type of captioning that is available on the program.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="CaptionDataType" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="AiringType">
+      <xs:simpleType>
+        <xs:restriction base="AiringDataType" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="AudioLevel">
+      <xs:annotation>
+        <xs:documentation>Indicate actual level (Dolby Digital, Dolby 5.1, etc.) if known; Stereo if the exact level is unknown; or None if this program isn’t broadcast in Stereo.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="AudioLevelDataType" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="HDTVLevel">
+      <xs:annotation>
+        <xs:documentation>Indicate the actual level (720p, 1081I, etc.) if known; HD if the exact level is unknown; or None if the program wasn't created in HD.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="HDTVLevelDataType" />
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="DVI" type="xs:boolean">
+      <xs:annotation>
+        <xs:appinfo>
+          <b:fieldInfo notes="Designates programs created with narrated descriptions for the visually impaired" />
+        </xs:appinfo>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ThreeDFormat">
+      <xs:annotation>
+        <xs:appinfo>
+          <b:fieldInfo notes="The format of the 3-D value for program" />
+        </xs:appinfo>
+      </xs:annotation>
+      <xs:simpleType>
+        <xs:restriction base="ThreeDFormatDataType" />
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>

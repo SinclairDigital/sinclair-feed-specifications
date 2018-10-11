@@ -64,7 +64,7 @@ These are the properties for the root object of your feed.
 
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
-| Rovi_Listings | [Rovi_Listings](#rovilistings) | Required | 
+| Rovi_Listings | [Rovi_Listings Object](#rovilistings) | Required | 
 
 ---
 
