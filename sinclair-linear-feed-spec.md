@@ -8,17 +8,14 @@ This guide includes detailed information on the Sinclair External Linear Feed Sp
 * [Linear Feed Schema](#linear-feed-schema)
 
 **Content types:**
-* [Rovi Listings](#rovi-listings)
+* [Rovi_Listings](#rovilistings)
   * [Programs](#programs)
-    * [Station](#station)
 * [EventRatingTypeDef](#eventratingtypedef)
   * [EventRating](#eventrating)
-    * [RatingReasons](#ratingreasons)
-      * [RatingReason](#ratingreason)
 * [PgmRatingTypeDef](#pgmratingtypedef)
   * [PgmRating](#pgmrating)
-    * [RatingReasons](#ratingreasons)
-      * [RatingReason](#ratingreason)
+* [RatingReasons](#ratingreasons)
+  * [RatingReason](#ratingreason)
 * [GenreTypeDef](#genretypedef)
   * [Genre](#genre)
 * [CreditsTypeDef](#creditstypedef)
@@ -28,20 +25,16 @@ This guide includes detailed information on the Sinclair External Linear Feed Sp
   * [PgmDescription](#pgmdescription)
 * [ScheduleTypeDef](#scheduletypedef)
   * [Schedule](#schedule)
-    * [EventRatingTypeDef](#eventratingtypedef)
-    * [MiscAttributes](#miscattributes)
-  *  * [Attribute](#attribute)
-* [ProgramTypeDef](#)
+* [ProgramTypeDef](#programtypedef)
   * [AlternateTitles](#alternatetitles)
     * [Title](#title)
-      * [AltTitleType](#alttitletype)
   * [RichMedia](#richmedia)
     * [Images](#images)
       * [Image](#image)
        * [Rights](#rights)
          * [Right](#right)
-  * [MiscAttributes](#miscattributes)
-    * [Attribute](#attribute)
+* [MiscAttributes](#miscattributes)
+  * [Attribute](#attribute)
 * [CaptionDataType](#captiondatatype)
 * [AiringDataType](#airingdatatype)
 * [PgmColorDataType](#pgmcolordatatype)
@@ -71,20 +64,256 @@ These are the properties for the root object of your feed. It contains basic inf
 
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
-|  |  |  | 
-|  |  |  | 
-|  |  |  | 
-|  |  |  | 
-|  |  |  | 
+|  |  | Optional | 
+|  |  | Optional | 
+|  |  | Optional | 
+|  |  | Optional | 
+|  |  | Optional | 
 
 
 
 ---
 
-## Rovi Listings
+## Rovi_Listings
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Programs | [Programs Object](#programs) | Optional | Program metadata for this event.
+| SourceRegion | [SourceRegionDataType enum](#sourceregiondatatype) | Optional | Indentifies the region of Station. Currently Ingest primarily recognizes region as either 'North America' (default) or 'Europe'
+| Station | string | Optional | 
 
-## Program
-  
+## Programs
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Program | list of [ProgramTypeDef Object](#programtypedef) | Optional | Program metadata for this event.
+
+## EventRatingTypeDef
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| EventRating | [EventRating Object](#eventrating) | Optional | All ratings for the individual program.
+
+## EventRating
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| RatingReasons | [RatingReasons Object](#ratingreasons) | Optional | Reasons for the rating applied to the program.
+| Type | [EventRatingTypeDataType Object](#eventratingtypedatatype) | Optional | The name or acronym of the agency that has rated this program.
+| TVRating | [EventRatingDataType Object](#eventratingdatatype) | Optional | This field is used to specify the Rating of the program.
+
+## PgmRatingTypeDef
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| PgmRating | [PgmRating](#pgmrating) | Optional | 
+
+## PgmRating
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| RatingReasons | [RatingReasons Object](#ratingreasons) | Optional | Reasons for the rating applied to the program.
+| Type | [PgmRatingTypeDataType Object](#pgmratingtypedatatype) | Optional | The name or acronym of the agency that has rated this program.
+| Rating | [PgmRatingDataType Object](#pgmratingdatatype) | Optional | This field is used to specify the Rating of the program.
+
+## RatingReasons
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| RatingReason | [RatingReason Object](#ratingreason) | Optional | 
+
+## RatingReason
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| value | string | Required | 
+
+## GenreTypeDef
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Genre | [Genre Object](#genre) | Optional | 
+
+## Genre
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| value | [GenreDataType object](#genredatatype) | Optional | A single genre entry.
+
+## CreditsTypeDef
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Credit | [Credit Object](#credit) | Optional | At least one Credit Type of ‘Actor’ must be provided when the program type has been designated as ‘Movie’.  The credit sequence attribute is MANDATORY only when credit information is provided for the program.
+
+## Credit
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Type | [CreditDataType Object](#creditdatatype) | Optional | Used to designate actors and other persons affiliated with a program.  (e.g., actor, director, narrator, host, etc.) Each Credit Type entry must have an associated Credit Name.
+| Name | xs:string | Optional | The actual name of the actor or other persons affiliated with a program. (e.g., Tom Hanks, Robert Redford)  Each Credit Name entry must have an associated Credit Type. 
+| Role | xs:string | Optional | The role played by an actor.  (e.g., Rhett Butler)  Each Role entry must have an associated Credit Name and Credit Type.
+| Language | xs:string | Optional | Used to describe Language the credit text is in.
+| Sequence | xs:nonNegativeInteger | Optional | When more than one credit is provided for a program, this attribute will prioritize the display sequence of the credits to the end-user.  When provided, the credit sequence of a program should be a non-negative integer value.
+| RoviCreditID | xs:nonNegativeInteger | Optional | A credit ID corresponds to ROVI Credit IDs, used when partner can send pre-matched Credits to ROVI as determined by ROVI.
+
+## UGCSTypeDef
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Category | xs:string | Optional | 
+| Type | xs:string | Optional | 
+| Content | xs:string | Optional | 
+
+## ProgramCopyTypeDef
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| PgmDescription | [PgmDescription Object](#pgmdescription) | Optional | Valid program descriptions.
+
+## PgmDescription
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| AffiliateStation | xs:string | Optional | Not used at this time. Consult with Rovi representative before using it in Program Description.
+| Type | xs:string | Optional | 
+| Description | xs:string | Optional | Description of the program. Length limits as per determined by Description type (refer Guide book)
+| Culture | xs:string | Optional | Determines the culture of program description text.
+
+## ScheduleTypeDef
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Schedule | [Schedule Object](#schedule) | Optional | 
+
+## Schedule
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Ratings | [EventRatingTypeDef Object](#eventratingtypedef) | Optional | All ratings for the individual airing.
+| MiscAttributes | [MiscAttributes Object](#miscattributes) | Optional | 
+| AffiliateStation | xs:string | Optional | The Source ID is the unique ID that represents the source (station).
+| TimeZone | xs:string | Optional | This is the time zone in which the calendar date and broadcast time of a program is being provided.
+| CalendarDT | xs:dateTime | Optional | This is the calendar date and time of the program.
+| StartTime | xs:string | Optional | The start time of the program.  If the CalendarDT does not contain the start time this attribute must be populated.
+| EndTime | xs:string | Optional | The end time of the program.  This attribute is optional if the duration is provided.
+| Duration | xs:nonNegativeInteger | Optional | This is the duration of the program being aired, in minutes.  This attribute is not required if the end time is provided.
+| AssetID | xs:string | Optional | A numeric value designated to point to a schedule that is non linear- VOD
+| ShowingType | ShowingDataType | Optional | Showing type of the program.
+| AspectRatio | AspectRatioDataType | Optional | The Width and Height ratio of the onscreen program being broadcasted
+| SAP | xs:boolean | Optional | Designates programs broadcasted with narrated descriptions for visually impaired
+| Subtitled | xs:boolean | Optional | Designate whether the program has subtitles on screen.
+| SubtitleLanguage | xs:string | Optional | Indicates the language in which the program is subtitled, if applicable.
+| UmbrellaTitle | xs:string | Optional | The Umbrella Title gives the option to override the program title in the schedule
+| PartNumber | xs:nonNegativeInteger | Optional | Indicates the part number. Used only on long programs such as movies that are airing in multiple parts.  If this field is provided, Part Total must also be provided.
+| PartTotal | xs:nonNegativeInteger | Optional | Indicates the total number of parts. Used only on long programs such as movies that are airing n multiple parts.  Required if Part Number is provided.
+| PgmColorType | PgmColorDataType | Optional | Denotes the color of the program being broadcast.
+| Caption | CaptionDataType | Optional | Caption feature of the program.
+| AiringType | AiringDataType | Optional | Airing type of the program.
+| AudioLevel | AudioLevelDataType | Optional | Indicates the Audio level of the program.  Indicate actual level (Dolby Digital, Dolby 5.1, etc.) if known, "Stereo" if the if the exact level is unknown, or "None" if this program is not being aired in Stereo.
+| HDTVLevel | HDTVLevelDataType | Optional | Indicates the level of high definition of the program.  Indicate actual level (720p, 1081I, etc.) if known, "HD" if the if the exact level is unknown, or "None" if this program is not being aired in HD.
+| DVI | xs:boolean | Optional | Designates programs broadcast with narrated descriptions for the visually impaired
+| JoinedInProgress | xs:boolean | Optional | Use if the program start time is delayed
+| SubjectToBlackout | xs:boolean | Optional | If the program is locally subjected to blackout
+| Dubbed | xs:string | Optional | Indicates the language in which the program is dubbed.
+| IsEncrypted | xs:boolean | Optional | Designate whether the program is encrypted.
+| VPS | xs:dateTime | Optional | International attribute for Video Programming Service VPS and PDC systems are used by many analogue TV stations to ensure that a timer recording catches the whole programme even when the programme is not running to schedule.This means that if you input the announced time and date of the programme that you want to record, and that programme happens to run late, for example, VPS and PDC will automatically correct the timed recording on your recorder. 
+| Highlight | xs:string | Optional | International field, specific highlights for the broadcast.
+| BroadcastLanguage | xs:string | Optional | The Language the program is being broadcast in. Only to be used in cases where the original Language is different
+| StarRating | StarRatingDataType | Optional | 
+| ThreeDFormat | ThreeDFormatDataType | Optional | 
+
+## ProgramTypeDef
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Genres | GenreTypeDef | Optional | A list of descriptive words that may be assigned to help identify and categorize the content of the program, helping users get more information about the exact content of the program.
+| Ratings | PgmRatingTypeDef | Optional | All ratings for the program.
+| Credits | CreditsTypeDef | Optional | All credits for the program.
+| UGCS | UGCSTypeDef | Optional | EU program classification data. International third party classification, Universal Genre Classification System
+| PgmDescriptions | ProgramCopyTypeDef | Optional | All descriptions for the program.
+| AlternateTitles | [AlternateTitles Object](#alternatetitles) | Optional | 
+| RichMedia | [RichMedia Object](#richmedia) | Optional | 
+| MiscAttributes | [MiscAttributes Object](#miscattributes) | Optional | 
+| Schedules | ScheduleTypeDef | Optional | An individual event in the source's schedule.
+| StationProgramID | xs:string | Optional | Uniquely identifies a single program. This can be either a number or alphanumeric code, must uniquely identify a single program, and be guaranteed not to change or to be re-used.
+| ProgramType | ProgramTypeDataType | Optional | 
+| Category | CategoryDataType | Optional | The single most appropriate categorization for this program outside of ProgramType.
+| ProgramTitle | xs:string | Optional | Full title by which this program is commonly known.
+| OriginalTitle | xs:string | Optional | The title under which the program was first released by the production company or the producing TV source. Please fill in these fields whenever you can confirm them.
+| OriginalAirDate | xs:dateTime | Optional | Original date that the program aired on this source. MMDDYYYY format.
+| OriginalContent | xs:string | Optional | Is the program original to this network (Y/N).
+| SeriesEpisodeTitle | xs:string | Optional | Episode Title, as supplied by the distributor or syndicator.  Either this field, Episode Number or Part Number must be provided for Series Episodes.
+| OriginalEpisodeTitle | xs:string | Optional | The Episode title under which the program was first released by the production company or the producing TV source. Please fill in these fields whenever you can confirm them.
+| SeriesEpisodeNumber | xs:string | Optional | Episode Number, as supplied by the distributor or syndicator.  Either this field, Episode Title or Part Number must be provided for Series Episodes.
+| SeriesId | xs:string | Optional | 
+| SeriesSeasonNumber | xs:string | Optional | An integer value that identifies the season that the program was created/aired.
+| YearOfRelease | xs:int | Optional | The year the program/version was released in YYYY format.  Required for movies, but is optional for other program types.
+| Runtime | xs:int | Optional | The runtime is the length/duration of the program. This value shall be provided in minutes.
+| PrimaryLanguage | xs:string | Optional | Indicates the primary language in which the program was created.
+| OriginalTitleLanguage | xs:string | Optional | To be used if the program language and the broadcasting language is different
+| CountryOfOrigin | xs:string | Optional | Identifies the country where the program was originally produced.
+| ProdCompany | xs:string | Optional | The company that produced the program.
+| DistName | xs:string | Optional | The company that syndicates/distributes the program, if applicable.
+| NOLAcode | xs:string | Optional | 
+| SportsLeague | xs:string | Optional | Official League Name for this event.  E.g., NFL, AFL, MLB, etc.
+| SportsTeam1 | xs:string | Optional | Generally indicates the home team, when event is not being aired at a neutral site.  This field may be blank for non-team events.
+| SportsTeam2 | xs:string | Optional | Generally indicates the away team, when event is not being aired at a neutral site.  This field may be blank for non-team events.
+| SportsEventDate | xs:dateTime | Optional | Specifies the actual date on which the sporting event will occur, has occurred.
+| PartNumber | xs:nonNegativeInteger | Optional | Indicates the part number of a multi-part movie, episode or special.  If this field is provided, Part Total must also be provided.
+| PartTotal | xs:nonNegativeInteger | Optional | Indicates the total number of parts. (e.g., Part 1 of 2) of a multi-part movie, episode or special.  Required if Part Number is provided.
+| PgmColorType | PgmColorDataType | Optional | Denotes the color of the program being broadcast.
+| Caption | CaptionDataType | Optional | Identifies the type of captioning that is available on the program.
+| AiringType | AiringDataType | Optional | 
+| AudioLevel | AudioLevelDataType | Optional | Indicate actual level (Dolby Digital, Dolby 5.1, etc.) if known; Stereo if the exact level is unknown; or None if this program isn’t broadcast in Stereo.
+| HDTVLevel | HDTVLevelDataType | Optional | Indicate the actual level (720p, 1081I, etc.) if known; HD if the exact level is unknown; or None if the program wasn't created in HD.
+| DVI | xs:boolean | Optional | Designates programs created with narrated descriptions for the visually impaired
+| ThreeDFormat | ThreeDFormatDataType | Optional | The format of the 3-D value for program
+
+## AlternateTitles
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Title | [Title Object](#title) | Optional | 
+
+## Title
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| AltTitleType | [AlternateTitleTypeDataType Object](#alternatetitletypedatatype) | Optional | 
+| AltTitleText | xs:string | Optional | 
+| AltTitleLanguage | xs:string | Optional | 
+
+## RichMedia
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+|  | [Images Object](#images) | Optional | 
+
+## Images
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Image | [Image Object](#image) | Optional | 
+| AssetID | xs:string | Optional | Uniquely identifies a single RichMedia Asset within sender’s database
+| Title | xs:string | Optional | Image Title to be used in case different from Program Title
+| Type | ImageTypeDataType | Optional | The type or category of the image (e.g., Head Shot: Key) that can help classify images when they are created or edited.
+| Language | xs:string | Optional | If Image has text information then Language of the text.
+| Caption | xs:string | Optional | A brief description of the image.
+| MediaCredit | xs:string | Optional | The media outlet that should be credited with the image.
+| ZoomLevel | xs:nonNegativeInteger | Optional | The relative zoom level of the image.
+| NumberOfPeople | xs:nonNegativeInteger | Optional | This field represents number of people in the image.
+|FileLocation | string | Optional | Refers to the URL if image is available online, or refers to the file path if images are provided in additional compressed file
+| FileName | xs:string | Optional | File name (excluding full path) of the image if providing images as compressed zip file.
+| FileFormat | [ImageFileFormatDataType Object](#imagefileformatdatatype) | Optional | Format of the file e.g. jpg, jpeg, PNG etc.
+
+## Image
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Rights | [Rights Object](#rights) | Optional | 
+
+## Rights
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Right | [Right Object](#right) | Optional | 
+
+## Right
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Title | xs:string | Optional | Name of the Image Rights. 
+| StartDate | xs:date | Optional | Start Date that above mentioned Image Rights on image are owned
+| EndDate | xs:date | Optional | Date on which mentioned Image Rights expire
+
+
+
+## MiscAttributes
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Attribute | [Attribute Object](#attribute) | Optional | 
+
+## Attribute
+| Field | Type | Required | Description |
+| ----- | ---- | -------- | ----------- |
+| Key | string | Optional | 
+| Value | string | Optional | 
 
 ## CaptionDataType
 A string with a value in the following list:
