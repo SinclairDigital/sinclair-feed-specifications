@@ -31,8 +31,8 @@ This guide includes detailed information on the Sinclair External Linear Feed Sp
   * [RichMedia](#richmedia)
     * [Images](#images)
       * [Image](#image)
-       * [Rights](#rights)
-         * [Right](#right)
+        * [Rights](#rights)
+          * [Right](#right)
 * [MiscAttributes](#miscattributes)
   * [Attribute](#attribute)
 * [CaptionDataType](#captiondatatype)
@@ -60,17 +60,11 @@ This guide includes detailed information on the Sinclair External Linear Feed Sp
 ---
 
 ## Linear Feed Schema
-These are the properties for the root object of your feed. It contains basic information such as your company's name, when the feed was last updated, and other objects that will describe all your content such as TV Shows, Movies, etc.
+These are the properties for the root object of your feed.
 
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
-|  |  | Optional | 
-|  |  | Optional | 
-|  |  | Optional | 
-|  |  | Optional | 
-|  |  | Optional | 
-
-
+| Rovi_Listings | [Rovi_Listings](#rovilistings) | Required | 
 
 ---
 
