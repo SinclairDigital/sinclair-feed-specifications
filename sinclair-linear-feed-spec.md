@@ -2,7 +2,7 @@
 
 ### Overview
 
-This guide includes detailed information on the Sinclair External Linear Feed Specification, which can be used to build a content feed of linear video content. This schema conforms to the TIVO/Rovi XML Schema for program scheduling ([XSD](rovi-docs-and-xml/RoviExternalListings.xsd) [Data Types](rovi-docs-and-xml/RoviExternalListingsDataTypes.xsd))
+This guide includes detailed information on the Sinclair External Linear Feed Specification, which can be used to build a content feed of linear video content. This schema conforms to the TIVO/Rovi XML Schema for program scheduling ([XSD](rovi-docs-and-xml/RoviExternalListings.xsd) [Data Types](rovi-docs-and-xml/RoviExternalListingsDataTypes.xsd)). Sinclair is able to ingest several formats for Linear Video Schedules including [XMLTV](http://wiki.xmltv.org/index.php/XMLTVFormat), [Gracenote Station Airings](http://developer.tmsapi.com/docs/data_v1_1/stations/Stations_airings), and a the XML feed as documented herein.
 
 **Sections:**
 * [Linear Feed Schema](#linear-feed-schema)
