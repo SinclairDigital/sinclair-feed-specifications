@@ -192,7 +192,6 @@ Series Object Example (seasons):
   "seasons": [
     ...
   ],
-  "thumbnail": "https://example.org/cdn/thumbnails/1509428502952/1",
   "shortDescription": "Wondrous series seasons.",
   "groups": {
     ...
