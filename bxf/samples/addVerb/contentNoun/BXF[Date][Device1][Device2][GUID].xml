@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BxfMessage xsi:schemaLocation="http://smpte-ra.org/schemas/2021/2018/BXF BxfSchema.xsd" id="urn:uuid:add24558-e828-4d52-8bed-87263808df01" dateTime="2019-06-25T19:49:37Z" messageType="Information" origin="DistributionPartner" originType="Content Delivery" userName="svcDistributionUsername" destination="Automation System" xmlns="http://smpte-ra.org/schemas/2021/2017/BXF" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <BxfData action="add"> <!-- Verb (Action Attribute): add -->
+    <Content> <!--  Noun (Actionable Element): content -->
+      <ProgramContent>
+        <ContentMetaData>
+          <ContentId>
+            <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+          </ContentId>
+          <Name>_EPISODE_TITLE_</Name>
+          <Description>_EPISODE_DESCRIPTION_</Description>
+          <UsagePolicy>
+            <FirstAirDate>2019-06-29T00:00:00Z</FirstAirDate>
+          </UsagePolicy>
+          <Media>
+          <!--  As needed to describe media essense -->
+            <BaseBand>
+              <Audio>
+                <AnalogAudio secondaryAudioProgram="true" />
+                <DigitalAudio>
+                  <MPEGLayerIIAudio surround="false" audioId="1" />
+                </DigitalAudio>
+              </Audio>
+              <Video>
+                <Format>1080i</Format>
+                <CaptionsInVANC>true</CaptionsInVANC>
+              </Video>
+            </BaseBand>
+            <MediaLocation sourceType="Primary">
+              <Location>
+              <!-- 
+             	 if AssetServer[@/PathName[text()=beginsWith("http")], 
+             	 		MSE-Ingest will process the mezzanine location as a relative path to the BXF XML file
+             	 if AssetServer[@fileTranferAllowed=true]/PathName[text()=beginsWith("file://./my_relative_mezzanine_resource") 
+              	 		MSE-Ingest will perform a HTTP GET when ingesting this mezzanine essence              		
+            	-->
+                <AssetServer fileTransferAllowed="true">
+                  <PathName>https://app.extremereach.com/Media/Stream/ADD24558-E828-4D52-8BED-87263808DF01?profile=2A147B4F-8874-40E9-8A63-BAB81678CCB9</PathName>
+                </AssetServer>
+              </Location>
+              <SOM>
+                <SmpteTimeCode>01:00:00;00</SmpteTimeCode>
+              </SOM>
+              <Duration>
+                <SmpteDuration>
+                  <SmpteTimeCode>00:28:31;02</SmpteTimeCode>
+                </SmpteDuration>
+              </Duration>
+            </MediaLocation>
+          </Media>
+        </ContentMetaData>
+        <Elements>
+        
+        <!--  jjustman-2019-06-26 - notes: automated content ingest processing: MSE-Ingest will remove this leader block -->
+          <Element>
+            <SequenceNumber>1</SequenceNumber>
+            <Description>BARS TONES SLATE</Description>
+            <Offset>
+              <SmpteTimeCode>00:59:50;00</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:10;00</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>1</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>SLATE</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - notes: encoding start point -->
+          <Element>
+            <SequenceNumber>2</SequenceNumber>
+            <Description>SHOW OPEN</Description>
+            <Offset>
+              <SmpteTimeCode>01:00:00;00</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:05:02;06</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>2</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>A_BLOCK</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - transient dip to black, do not need to trim out of encoding -->
+          <Element>
+            <SequenceNumber>3</SequenceNumber>
+            <Description>BLACK</Description>
+            <Offset>
+              <SmpteTimeCode>01:05:02;06</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:00;16</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>3</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>BLACK</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - must take barter linear insertion -->
+          <Element>
+            <SequenceNumber>4</SequenceNumber>
+            <Offset>
+              <SmpteTimeCode>01:05:02;22</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:02:00;02</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <EmbeddedNonProgramContent>
+              <Details>
+                <AdType>General</AdType>
+                <SpotType>Standard</SpotType>
+              </Details>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Ad-ID">_LINEAR_SPOT_AD_ID_</AlternateId>
+                </ContentId>
+                <Name>_BARTER_LINEAR_SPOT_NAME_</Name>
+              </ContentMetaData>
+            </EmbeddedNonProgramContent>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - transient dip to black, do not need to trim out of encoding -->          
+          <Element>
+            <SequenceNumber>5</SequenceNumber>
+            <Description>BLACK</Description>
+            <Offset>
+              <SmpteTimeCode>01:07:02;24</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:00;16</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>5</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>BLACK</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - return to linear program -->          
+          <Element>
+            <SequenceNumber>6</SequenceNumber>
+            <Description>Segment 1</Description>
+            <Offset>
+              <SmpteTimeCode>01:07:03;10</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:04:01;02</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>6</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>B_BLOCK</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - transient dip to black, do not need to trim out of encoding -->
+          <Element>
+            <SequenceNumber>7</SequenceNumber>
+            <Description>BLACK</Description>
+            <Offset>
+              <SmpteTimeCode>01:11:04;10</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:00;06</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>7</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>BLACK</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - must take barter linear insertion -->
+          <Element>
+            <SequenceNumber>8</SequenceNumber>
+            <Offset>
+              <SmpteTimeCode>01:11:04;16</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:15;00</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <EmbeddedNonProgramContent>
+              <Details>
+                <AdType>General</AdType>
+                <SpotType>Standard</SpotType>
+              </Details>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Ad-ID">_LINEAR_SPOT_AD_ID_</AlternateId>
+                </ContentId>
+                <Name>_BARTER_LINEAR_SPOT_NAME_</Name>
+              </ContentMetaData>
+            </EmbeddedNonProgramContent>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - transient dip to black, do not need to trim out of encoding -->
+          <Element>
+            <SequenceNumber>9</SequenceNumber>
+            <Description>BLACK</Description>
+            <Offset>
+              <SmpteTimeCode>01:11:19;16</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:00;06</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>9</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>BLACK</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - must take barter linear insertion -->
+          <Element>
+            <SequenceNumber>10</SequenceNumber>
+            <Offset>
+              <SmpteTimeCode>01:11:19;22</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:30;00</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <EmbeddedNonProgramContent>
+              <Details>
+                <AdType>General</AdType>
+                <SpotType>Standard</SpotType>
+              </Details>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Ad-ID">_LINEAR_SPOT_AD_ID_</AlternateId>
+                </ContentId>
+                <Name>_BARTER_LINEAR_SPOT_NAME_</Name>
+              </ContentMetaData>
+            </EmbeddedNonProgramContent>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - transient dip to black, do not need to trim out of encoding -->
+          <Element>
+            <SequenceNumber>11</SequenceNumber>
+            <Description>BLACK</Description>
+            <Offset>
+              <SmpteTimeCode>01:11:49;22</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:00;06</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>11</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>BLACK</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - must take barter linear insertion -->
+          <Element>
+            <SequenceNumber>12</SequenceNumber>
+            <Offset>
+              <SmpteTimeCode>01:11:49;28</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:01:00;02</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <EmbeddedNonProgramContent>
+              <Details>
+                <AdType>General</AdType>
+                <SpotType>Standard</SpotType>
+              </Details>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Ad-ID">_LINEAR_SPOT_AD_ID_</AlternateId>
+                </ContentId>
+                <Name>_BARTER_LINEAR_SPOT_NAME_</Name>
+              </ContentMetaData>
+            </EmbeddedNonProgramContent>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - transient dip to black, do not need to trim out of encoding -->
+          <Element>
+            <SequenceNumber>13</SequenceNumber>
+            <Description>BLACK</Description>
+            <Offset>
+              <SmpteTimeCode>01:12:50;00</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:00;06</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>13</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>BLACK</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - must take barter linear insertion -->
+          <Element>
+            <SequenceNumber>14</SequenceNumber>
+            <Offset>
+              <SmpteTimeCode>01:12:50;06</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:15;00</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <EmbeddedNonProgramContent>
+              <Details>
+                <AdType>General</AdType>
+                <SpotType>Standard</SpotType>
+              </Details>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Ad-ID">_LINEAR_SPOT_AD_ID_</AlternateId>
+                </ContentId>
+                <Name>_BARTER_LINEAR_SPOT_NAME_</Name>
+              </ContentMetaData>
+            </EmbeddedNonProgramContent>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - transient dip to black, do not need to trim out of encoding -->
+          <Element>
+            <SequenceNumber>15</SequenceNumber>
+            <Description>BLACK</Description>
+            <Offset>
+              <SmpteTimeCode>01:13:05;08</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:00;06</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>15</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>BLACK</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - bumper, must take -->
+          <Element>
+            <SequenceNumber>16</SequenceNumber>
+            <Description>FEE SPOT BUMPER 1</Description>
+            <Offset>
+              <SmpteTimeCode>01:13:05;14</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:03;00</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>16</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>C_BREAK_TENTPOLE</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - promo open -->
+          <Element>
+            <SequenceNumber>17</SequenceNumber>
+            <Description>C_BLOCK_OPEN</Description>
+            <Offset>
+              <SmpteTimeCode>01:13:08;14</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:30;00</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>17</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>C_BLOCK_OPEN</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - continue linear program -->
+          <Element>
+            <SequenceNumber>18</SequenceNumber>
+            <Description>C_BLOCK</Description>
+            <Offset>
+              <SmpteTimeCode>01:13:38;14</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:04:12;20</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>18</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>C_BLOCK</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - local linear avail with black rolled thru, 
+          		must remove this from output encoding, but keep break duration for:
+       			  						> VOD midroll pod duration (DFP VAST: pmxd) and
+          								> Linear EPG programming stitch length -->
+          <Element>
+            <SequenceNumber>19</SequenceNumber>
+            <Description>Local Ad</Description>
+            <Offset>
+              <SmpteTimeCode>01:17:51;04</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:02:01;04</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>19</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>LOCAL</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - return to linear program -->
+          <Element>
+            <SequenceNumber>20</SequenceNumber>
+            <Description>D_BLOCK</Description>
+            <Offset>
+              <SmpteTimeCode>01:19:52;08</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:04:41;24</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>20</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>D_BLOCK</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - local linear avail with black rolled thru, must remove this from output encoding, but keep break duration for:
+       			  						> VOD midroll pod duration (DFP VAST: pmxd) and
+          								> Linear EPG programming stitch length -->
+          <Element>
+            <SequenceNumber>21</SequenceNumber>
+            <Description>Local Ad</Description>
+            <Offset>
+              <SmpteTimeCode>01:24:34;02</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:02:01;04</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>21</SegmentNumber>
+              <Type>Interactive</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>LOCAL</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - bumper, must take -->
+          <Element>
+            <SequenceNumber>22</SequenceNumber>
+            <Description>FEE SPOT BUMPER</Description>
+            <Offset>
+              <SmpteTimeCode>01:26:35;06</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:03;00</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>22</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>D_BREAK_TENTPOLE</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - must take barter linear insertion -->
+          <Element>
+            <SequenceNumber>23</SequenceNumber>
+            <Description>E_BLOCK_OPEN</Description>
+            <Offset>
+              <SmpteTimeCode>01:26:38;06</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:00:30;00</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>23</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>E_BLOCK_OPEN</SegmentName>
+            </ProgramElement>
+          </Element>
+
+          <!--  jjustman-2019-06-26 - return to linear program, roll out -->
+          <Element>
+            <SequenceNumber>24</SequenceNumber>
+            <Description>E_BLOCK_AND_CLOSE</Description>
+            <Offset>
+              <SmpteTimeCode>01:27:08;08</SmpteTimeCode>
+            </Offset>
+            <Duration>
+              <SmpteDuration>
+                <SmpteTimeCode>00:01:22;24</SmpteTimeCode>
+              </SmpteDuration>
+            </Duration>
+            <ProgramElement>
+              <SegmentNumber>24</SegmentNumber>
+              <Type>ProgramSegment</Type>
+              <ContentMetaData>
+                <ContentId>
+                  <AlternateId idType="Episode Number">_EPISODE_NUMBER_EIDR_OR_TMS_ID_</AlternateId>
+                </ContentId>
+              </ContentMetaData>
+              <SegmentName>E_BLOCK_AND_CLOSE</SegmentName>
+            </ProgramElement>
+          </Element>
+          
+          <!--  jjustman-2019-06-26 - end of program -->
+        </Elements>
+      </ProgramContent>
+    </Content>
+  </BxfData>
+</BxfMessage>
