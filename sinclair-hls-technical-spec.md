@@ -16,5 +16,7 @@ Our goal is for you to have the highest quality version of your video library to
 | Audio Sample Rate        | Preferred:  48 Khz. Supported:  44.1 Khz.
 | Audio Bit Rate           | Preferred: Stereo at 384kbps. Supported: Stereo at 128kbps (or higher)
 | Audio Level              | All audio levels must be below 0db. Overall audio level should normalized to -24db.
+| Closed Captioning        | Closed captioning should be embedded according to [EIA-608](https://en.wikipedia.org/wiki/EIA-608) or [EIA-708](https://ecfsapi.fcc.gov/file/6511959011.pdf)
+| Ad Marking               | Ad markers should be included according to [SCTE-35](https://www.scte.org/SCTEDocs/Standards/ANSI_SCTE%2035%202019r1.pdf). At minimum `EXT-CUE-IN` and `EXT-CUE-OUT` markers are expected
 
 
