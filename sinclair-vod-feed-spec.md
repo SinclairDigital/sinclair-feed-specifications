@@ -567,7 +567,7 @@ This object represents the details of a single video file.
 | ----- | ---- | -------- | ----------- |
 | url | string | Required | The URL of the video itself. The video should be served from a CDN (Content Distribution Network). Supported formats are described in ...TODO.
 | quality | enum | Required | Must be one of the following:<ul><li>HD – 720p</li><li>FHD – 1080p</li><li>UHD – 4K</li></ul>If your stream uses an adaptive bitrate, set the quality to the highest available.
-| videoType | enum | Required | Must be one of the following:<ul><li>HLS</li><li>SMOOTH</li><li>DASH</li><li>MP4</li><li>MOV</li><li>M4V</li></ul>
+| videoType | enum | Required | Must be one of the following:<ul><li>HLS</li></ul>
 | bitrate | integer | Required only for non-ABR streams. | The bitrate in kbps. For non-adaptive streams, this must be provided. It is not needed for an ABR (e.g., HLS) stream.
 
 Video Object Example:
