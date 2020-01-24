@@ -42,6 +42,9 @@ Sinclair currently does not support using of EXT-X-BYTERANGE tag in HLS manifest
 #### Media Sequence Number
 The media sequence number of the newly refreshed playlist compared to last playlist MUST NOT increase by more than the number of new media segments appended to the new playlist. This is vital as any discrepancy will cause the playback to stall on end users' devices.
 
+### HLS AES Encryption
+Only AES-128 and NONE methods for content encryption are supported for retransmission. SAMPLE-AES and fragmented MP4(fMP4) container are not supported at this time.
+
 ### HLS Validation
 Content providers are encouraged to use **Media Stream Validator** (`mediastreamvalidator`) to simulate a HTTP Live Streaming session and verify that the index file and media segments conform to the HTTP Live Streaming specification. This tool can validate both local files and HTTPS URLs. Download link can be located at the [Resources](#Resources) section below.
 
