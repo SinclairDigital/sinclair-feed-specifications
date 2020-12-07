@@ -176,12 +176,12 @@ This object represents a series, such as a season of a TV Show or a mini-series.
 | shortDescription | string | Required | A description that does not exceed 200 characters.
 | longDescription | string | Optional | A longer description exceeding 200.
 | tags | [Tag Object](#tag) | Optional | One tag object.
-| groups | [Group Object](#group) | Optional | An array of groups (episodes grouped together).
+| groups | [Group Object](#group) | Required* | An array of groups (episodes grouped together).
 | credits | [Credit Object](#credit) | Optional | One or more credits. The cast and crew of the series.
 | ratings | [Rating Object](#rating) | Optional | One or more parental ratings for the content.
 | externalIds | [External ID Object](#externalid) | Optional | One or more third-party metadata provider IDs.
 
-> :information_source: *Must have either `seasons` or `episodes` or `groups`. It cannot be mixed of all
+> :information_source: * Must have either `seasons` or `episodes` or `groups`. It cannot be mixed of all
 
 Series Object Example (seasons): `series` -> `seasons`
 
@@ -258,7 +258,7 @@ Series Object Example (groups):  `series` -> `groups`
   "title": "The Amazing Series with Groups!",
   "groups": [
     {
-      "name": "demo",
+      "name": "Group1",
       "episodes": [
         {
           ...
@@ -294,12 +294,14 @@ This object represents a single season of a series.
 | Field | Type | Required | Description |
 | ----- | ---- | -------- | ----------- |
 | seasonNumber | integer | Required | Sequential season number. E.g.: 3 or 2015.
-| episodes | [Episode Object](#episode) | Required | One or more episodes of this particular season.
+| episodes | [Episode Object](#episode) | Required* | One or more episodes of this particular season.
 | seasonTitle | string | Optional | The season title.
 | thumbnails | [Thumbnail Object](#thumbnail) | Optional | One or more thumbnails. Must include one thumbnail with at least 1280x720 resolution.  Must include one thumbnail with at least 1280x720 resolution.
-| groups | [Group Object](#group) | Optional | An array of groups (episodes grouped together).
+| groups | [Group Object](#group) | Required* | An array of groups (episodes grouped together).
 
-Season Object Example:
+> :information_source: * Must have either `episodes` or `groups`. It cannot be mixed of both
+
+Season Object Example: `series` -> `seasons` -> `episodes`
 
 ```json
 {
@@ -307,9 +309,22 @@ Season Object Example:
   "seasonTitle": "Go forward!",
   "episodes": [
     ...
-  ],
+  ]
+}
+```
+Season Object Example: `series` -> `seasons` -> `group` -> `episodes`
+
+```json
+{
+  "seasonNumber": "1",
+  "seasonTitle": "Go forward!",
   "groups": [
-    ...
+    {
+      "name": "Group1",
+      "episodes": [
+        ...
+      ]
+    }    
   ]
 }
 ```
@@ -791,8 +806,8 @@ Tag Object Example:
 ## group
 Child object of property:
 
-* `season`
 * `series`
+* `season`
 
 This object represents an episode grouping.
 
